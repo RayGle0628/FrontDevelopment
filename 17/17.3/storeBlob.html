@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> 存储Blob对象 </title>
+	<script type="text/javascript">
+		function createDb(event)
+		{
+			idb = event.target.result;
+			// 定义Object Store的名称
+			var storeName = "pics";
+			// 如果要创建Object Store已存在，先删除它
+			if (idb.objectStoreNames.contains(storeName))
+			{
+				idb.deleteObjectStore(storeName);
+			}
+			// 定义创建Object Store的的选项
+			var opt = {
+				// 指定主键
+				keyPath: "pic_id",
+				// 设置主键的自增长
+				autoIncrement: true
+			};
+			// 创建Object Store
+			var store = idb.createObjectStore(storeName, opt);
+		}
+		var dbName = "picDb";
+		var version = 3;
+		function add()
+		{
+			// 打开数据库连接
+			var request = indexedDB.open(dbName , version);
+			var idb;
+			request.onsuccess = function(event)
+			{
+				idb = request.result;
+				// 打开针对pics对象存储的读写事务
+				var tx = idb.transaction("pics", "readwrite");
+				var picsStore = tx.objectStore("pics");
+				var pic = {
+					pic: document.querySelector("#pic").files[0]
+				};
+				// 添加图片
+				var objectStoreRequest = picsStore.put(pic);
+				// 为添加数据的请求绑定事件处理函数
+				objectStoreRequest.onsuccess = function(event)
+				{
+					alert("图片添加成功！");
+					// 清除pic控件的内容
+					document.querySelector("#pic").value = "";
+				};
+			}
+			request.onerror = function(event)
+			{
+				alert("数据库打开失败!");
+			}
+			request.onupgradeneeded = createDb;
+		}
+		function get(key)
+		{
+			var iKey = parseInt(key);
+			if( isNaN(iKey) )
+			{
+				alert("请输入整数作为图片ID");
+				document.getElementById('id').value = "";
+				return;
+			}
+			// 打开数据库连接
+			var request = indexedDB.open(dbName , version);
+			var idb;
+			request.onsuccess = function(event)
+			{
+				idb = request.result;
+				// 打开针对pics对象存储的只读事务
+				var tx = idb.transaction("pics", "readonly");
+				var picsStore = tx.objectStore("pics");
+				// 读取图片
+				var objectGetRequest = picsStore.get(iKey);
+				// 为删除数据的请求绑定事件处理函数
+				objectGetRequest.onsuccess = function(event)
+				{
+					var obj = objectGetRequest.result;
+					// 取出图片内容
+					document.querySelector("#out").innerHTML = 
+						"<img src='" + URL.createObjectURL(obj.pic)+ "'/>";
+				};
+			}
+			request.onerror = function(event)
+			{
+				alert("数据库打开失败!" + event);
+			}
+			request.onupgradeneeded = createDb;
+		}
+	</script>
+</head>
+<body>
+选择图片：<input type="file" id="pic" name="pic" accept="image/*"/><p>
+<button onclick="add();">保存</button><p>
+<input type="text" id="id" name="id" placeholder="请输入图片id"/>
+<button onclick="get(document.getElementById('id').value);">打开图片</button>
+<div id="out"></div>
+</body>
+</html>

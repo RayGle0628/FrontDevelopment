@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> control属性 </title>
+</head>
+<body>
+<form action="pro.action" method="post" autocomplete="on">
+<label id="nameLb">姓名:
+<input type="text" name="name" /></label><p>
+<input type="submit" value="提交"/>
+<input type="button" value="重设" 
+	onclick="document.getElementById('nameLb').control.value='crazyit';"/>
+</form>
+</body>
+</html>

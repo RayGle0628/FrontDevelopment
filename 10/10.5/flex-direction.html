@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> flex-direction排列方向 </title>
+	<style type="text/css">
+		div#container {
+			border: 1px solid black;
+			padding: 5px;
+			width: 600px;
+			height: 140px;
+			display: flex;
+		}
+		div>div {
+			border: 1px solid #aaf;
+			padding:5px;
+		}
+	</style>
+</head>
+<body>
+<div id="container">
+	<div>栏目一</div>
+	<div>栏目二</div>
+	<div>栏目三</div>
+</div>
+<button onclick="change(this.innerHTML);">row</button>
+<button onclick="change(this.innerHTML);">row-reverse</button>
+<button onclick="change(this.innerHTML);">column</button>
+<button onclick="change(this.innerHTML);">column-reverse</button>
+<script type="text/javascript">
+function change(val){
+	document.getElementById('container').style.flexDirection = val;
+}
+</script>
+</body>
+</html>

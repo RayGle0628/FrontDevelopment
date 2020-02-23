@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> perspective-style </title>
+	<style type="text/css">
+		div {
+			position: absolute;
+			border: 1px solid black;
+		}
+		div#a {
+			padding:60px;
+			background-color: #eee;
+			transform: rotateY(30deg);
+			/* 设置子元素保持3D位置 */
+		}
+		div#b {
+			padding:40px;
+			background-color: #aaa;
+			transform: rotateY(20deg);
+		}
+	</style>
+</head>
+<body>
+<div id="a">
+	<div id="b"></div>
+</div>
+</body>
+</html>

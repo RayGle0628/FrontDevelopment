@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> formenctype属性 </title>
+</head>
+<body>
+<form method="post" action="pro">
+	用户名：<input type="text" name="name"/><p>
+	密码：<input type="password" name="name"/><p>
+	头像：<input type="file" name="pic"/><p>
+	<input type="submit" value="普通注册" 
+		formenctype="application/x-www-form-urlencoded"/>
+	<input type="submit" value="上传图片"
+	formenctype="multipart/form-data"/>
+</form>
+</body>
+</html>

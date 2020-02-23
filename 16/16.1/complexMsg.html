@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> 客户端记事本 </title>
+	<style type="text/css">
+		table {
+			border-collapse: collapse;
+		}
+		td, th{
+			border-left: 1px solid #888;
+			border-right: 1px solid #888;
+			padding: 8px;
+			background: linear-gradient(#eee, white);
+		}
+	</style>
+</head>
+<body>
+	<h2>客户端记事本</h2>
+	标题：<input id="title" name="title" type="text" size="60"/><br/>
+	事件信息：<textarea id="content" name="content" cols="50" rows="8"></textarea><br/>
+	添加人：<input id="user" name="user" type="text"/><br/>
+	<input type="button" value="添加事件" onclick="addMsg();"/>
+	<input type="button" value="清除事件" onclick="clearMsg();"/>
+	<hr/>
+	<table style="width:800px">
+		<tr>
+			<th>标题</th>
+			<th>事件内容</th>
+			<th>添加人</th>
+			<th>添加时间</th>
+		</tr>
+		<tbody id="show"></tbody>
+	</table>
+	<script type="text/javascript">
+		// 加载事件信息
+		var loadMsg = function()
+		{
+			var tb = document.getElementById("show");
+			// 清空原来显示的内容。
+			tb.innerHTML = "";
+			// 遍历所有事件信息
+			for(var i = 0, j = 0 ; i < localStorage.length ; i++)
+			{
+				var key = localStorage.key(i);
+				// 如果key以_fk开头
+				if (key.indexOf('_fk') == 0)
+				{
+					var date = new Date();
+					// 去掉key前面_fk前缀才能作为时间
+					date.setTime(key.substring(3));
+					// 获取添加时间
+					var datestr = date.toLocaleDateString()
+						+ "&nbsp;" + date.toLocaleTimeString();
+					// 获取事件内容字符串
+					var msgStr = localStorage[key];
+					// 把事件内容字符串转换成JavaScript对象
+					var msg = JSON.parse(msgStr);
+					var row = tb.insertRow(j++);
+					// 添加第一个单元格，并显示标题
+					row.insertCell(0).innerHTML = msg.title;
+					// 添加第二个单元格，并显示事件内容
+					row.insertCell(1).innerHTML = msg.content;
+					// 添加第三个单元格，并显示添加人
+					row.insertCell(2).innerHTML = msg.user;
+					// 添加第四个单元格，并显示添加事件。
+					row.insertCell(3).innerHTML = datestr;
+				}
+			}
+		}
+		var addMsg = function()
+		{
+			var titleElement = document.getElementById("title");
+			var contentElement = document.getElementById("content");
+			var userElement = document.getElementById("user");
+			// 将标题、事件内容、添加用户封装成对象
+			var msg = {
+				title: titleElement.value,
+				content: contentElement.value,
+				user: userElement.value
+			}
+			var time = new Date().getTime();
+			// 以当前时间（加fk前缀）为key来保存事件信息
+			localStorage['_fk' + time] = JSON.stringify(msg);
+			titleElement.value = "";
+			contentElement.value = "";
+			userElement.value = "";
+			alert("数据已保存。");
+			loadMsg();
+		}
+		function clearMsg()
+		{
+			// 清空Local Storage里保存的数据。
+			localStorage.clear();
+			alert("全部事件信息已被清除。");
+			loadMsg();
+		}
+		window.onload = loadMsg();
+	</script>
+</body>
+</html>

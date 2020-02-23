@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> 循环线性渐变 </title>
+	<style type="text/css">
+	/* 为div元素增加边框 */
+	div{
+		height: 400px;
+		width: 400px;
+	}
+	</style>
+</head>
+<body>
+background:repeating-linear-gradient(red, blue 10%, magenta 20%)<br>
+红、蓝、洋红循环线性渐变
+<div id="dv1" style="background:repeating-linear-gradient(red, blue 10%, magenta 20%);"></div>
+角度：<input style="width:360px" type="range" min="0" max="360" value="0"
+	onchange="change(this.value);">
+<script type="text/javascript">
+function change(val){
+	var s = "linear-gradient(" + val + ", red, blue)";
+	document.getElementById("dv1").style.background = 
+		"repeating-linear-gradient(" + val + "deg, red, blue 10%, magenta 20%)";
+}
+</script>
+</body>
+</html>

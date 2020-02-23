@@ -1,0 +1,14 @@
+<script type="text/javascript">
+//var arguments = "yeeku";
+// 箭头函数中arguments引用当前上下的arguments，即"yeeku"字符串
+var arr = () => arguments;
+console.log(arr()); // 输出yeeku
+function foo()
+{
+	// 箭头函数中arguments引用当前上下的arguments，
+	// 此时arguments代表调用foo函数的参数
+	var f = (i) => 'Hello,' + arguments[0];
+	return f(2);
+}
+console.log(foo("yeeku", "fkit")); // 输出Hello,yeeku
+</script>

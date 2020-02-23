@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> 循环径向渐变 </title>
+	<style type="text/css">
+	/* 为div元素增加边框 */
+	div{
+		height: 300px;
+		width: 400px;
+	}
+	</style>
+</head>
+<body>
+background:repeating-radial-gradient(red, blue 30px, magenta 50px)<br>
+红、蓝、洋红循环径向渐变
+<div id="dv1" style="background:repeating-radial-gradient(red, blue 30px, magenta 50px);"></div>
+x：<input id="x" style="width:360px" type="range" min="0" max="400" value="200"
+	onchange="change();"><p>
+y：<input id="y" style="width:360px" type="range" min="0" max="300" value="150"
+	onchange="change();">
+<script type="text/javascript">
+function change(){
+	var x = document.getElementById("x").value;
+	var y = document.getElementById("y").value;
+	document.getElementById("dv1").style.background = 
+		"repeating-radial-gradient(at " + x + "px " + y + "px" + ", red, blue 30px, magenta 50px)";
+}
+</script>
+</body>
+</html>

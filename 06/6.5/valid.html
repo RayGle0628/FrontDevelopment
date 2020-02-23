@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> :valid </title>
+	<style type="text/css">
+		/* 为不通过输入校验的元素设置背景色 */
+		:invalid {
+			background-color: red;
+		}
+		/* 为通过输入校验的元素设置背景色 */
+		:valid {
+			background-color: white;
+		}
+	</style>
+</head>
+<body>
+用户名：<input type="text" placeholder="输入用户名" pattern="\w{4,10}"/><p>
+密码：<input type="text" placeholder="输入密码" required/>
+</body>
+</html>

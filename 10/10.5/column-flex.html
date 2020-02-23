@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> 纵向排列的flex </title>
+	<style type="text/css">
+		div#container {
+			border: 1px solid black;
+			padding: 5px;
+			width: 600px;
+			height: 180px;
+			display: flex;
+			flex-direction:column;
+		}
+		div>div {
+			border: 1px solid #aaf;
+			padding:5px;
+			/* 设置该元素的大小包括边框 */
+			box-sizing:border-box;
+		}
+	</style>
+</head>
+<body>
+<div id="container">
+	<div style="flex:1 1 40px">栏目一</div>
+	<div style="flex:2 2 40px">栏目二</div>
+	<div style="flex:3 3 40px">栏目三</div>
+</div>
+</body>
+</html>

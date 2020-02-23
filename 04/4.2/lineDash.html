@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> 点线模式 </title>
+</head>
+<body>
+<h2> 点线模式 </h2>
+<canvas id="mc" width="400" height="280"
+	style="border:1px solid black"></canvas><p>
+选择点线模式：<select id="lineDash" onchange="changeLineDash(this.value);">
+</select><p>
+点线相位：<input type="range" id="lineDashOffset" style="width:300px"
+	onchange="changeLineDashOffset(this.value);"/>
+<script type="text/javascript">
+	// 定义一个数组来代表所有点线模式
+	var lineDashArr = [[2, 2],
+		[2.0, 4.0, 2.0],
+		[2.0, 4.0, 6.0],
+		[2.0, 4.0, 2.0, 6.0],
+		[2.0, 2.0, 4.0, 4.0],
+		[2.0, 2.0, 4.0, 6.0, 10.0]];
+	var phaseMax = 20;
+	var phaseMin = -20;
+	// 初始化界面上lineDash元素
+	var lineDashEle = document.getElementById("lineDash");
+	for (var i = 0; i < lineDashArr.length ; i++)
+	{
+		lineDashEle.options[i] = new Option(lineDashArr[i], i);
+	}
+	lineDashEle.options[0].selected = true;
+	// 初始化界面上lineDashOffset元素
+	var lineDashOffsetEle = document.getElementById("lineDashOffset");
+	lineDashOffsetEle.max = phaseMax;
+	lineDashOffsetEle.min = phaseMin;
+	lineDashOffsetEle.step = 0.1;
+	lineDashOffsetEle.value = 0;
+	// lineDash变量保存绘图的点线模式
+	var lineDash = lineDashArr[0];
+	// lineDashOffset变量保存绘图的点线相位
+	var lineDashOffset = 0;
+	function draw()
+	{
+		// 获取canvas元素对应的DOM对象
+		var canvas = document.getElementById('mc');
+		// 获取在canvas上绘图的CanvasRenderingContext2D对象
+		var ctx = canvas.getContext('2d');
+		ctx.fillStyle = "#fff";
+		ctx.fillRect(0, 0, 400, 280); 
+		// 设置线条颜色
+		ctx.strokeStyle = "#f0f";
+		// 设置线条宽度
+		ctx.lineWidth = 2;
+		// 设置点线模式
+		ctx.setLineDash(lineDash);
+		// 设置点线模式的相位
+		ctx.lineDashOffset = lineDashOffset;
+		// 绘制一个矩形边框
+		ctx.strokeRect(40 , 60 , 120 , 120);
+		ctx.beginPath();
+		// 添加一个圆
+		ctx.arc(300, 120, 60, 60, 0, Math.PI * 2, true);
+		// 添加一条直线
+		ctx.moveTo(30 , 30);
+		ctx.lineTo(360 , 30);
+		// 再添加一条直线
+		ctx.moveTo(200 , 50);
+		ctx.lineTo(200 , 240);
+		ctx.closePath();
+		ctx.stroke();
+	}
+	function changeLineDash(i)
+	{
+		lineDash = lineDashArr[i];
+		draw();
+	}
+	function changeLineDashOffset(val)
+	{
+		lineDashOffset = val;
+		draw();
+	}
+	draw();
+</script>
+</body>
+</html>

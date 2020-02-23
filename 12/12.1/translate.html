@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> 变形 </title>
+	<style type="text/css">
+		div {
+			display: inline-block;
+			width: 60px;
+			height: 60px;
+			background-color: #bbb;
+			border: 2px solid black;
+			margin: 20px;
+		}
+	</style>
+</head>
+<body>
+<div>文字</div> 未变形 <div>文字</div><br/>
+<div>文字一</div> 沿X轴移动120px
+<div style="transform:translateX(120px);">文字一</div><br/>
+<div>文字二</div> 沿Y轴移动-80px
+<div style="transform:translateY(-80px);">文字二</div><br/>
+<div>文字三</div> 位移120px,-80px 
+<div style="transform:translate(120px,-80px);">文字三</div><br/>
+<div>文字四</div> 沿Z轴移动120px
+<div style="transform:translateZ(120px);">文字四</div><br/>
+<div>文字五</div> 沿Z轴移动-80px
+<div style="transform:translateZ(-80px);">文字五</div>
+</body>
+</html>

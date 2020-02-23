@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> order控制顺序 </title>
+	<style type="text/css">
+		div#container {
+			border: 1px solid black;
+			padding: 5px;
+			width: 600px;
+			height: 140px;
+			display: flex;
+		}
+		div>div {
+			border: 1px solid #aaf;
+			padding:5px;
+		}
+	</style>
+</head>
+<body>
+<div id="container">
+	<div style="order:2">栏目一</div>
+	<div style="order:1">栏目二</div>
+	<div style="order:3">栏目三</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> 变形 </title>
+	<style type="text/css">
+		div {
+			position: absolute;
+			width: 90px;
+			height: 90px;
+			background-color: rgba(180,180,180, 0.5);
+			border: 2px solid black;
+		}
+		div.a {
+			left: 80px;
+			top: 30px;
+		}
+		div.b {
+			left: 80px;
+			top: 150px;
+		}
+		div.c {
+			left: 80px;
+			top: 270px;
+		}
+		div.d {
+			left: 80px;
+			top: 430px;
+		}
+		div.e {
+			left: 80px;
+			top: 550px;
+		}
+	</style>
+</head>
+<body>
+<div class="a">
+未变换之前
+</div>
+<div class="a"
+style="transform-origin:left top;transform:rotate(-25deg);">
+左上角为变换中心
+</div>
+<div class="b">
+未变换之前
+</div>
+<div class="b"
+style="transform-origin:right bottom;transform:rotate(65deg);">
+右下角为变换中心
+</div>
+<div class="c">
+未变换之前
+</div>
+<div class="c"
+style="transform-origin:right center;transform:rotate(-90deg);">
+右边界的中间为变换中心
+</div>
+<div class="d">
+未变换之前
+</div>
+<div class="d"
+style="transform-origin:left center;transform:scale(1.8, 0.4);">
+左边界的中心为变换中心
+</div>
+<div class="e">
+未变换之前
+</div>
+<div class="e"
+style="transform-origin:right bottom;transform:scale(1.8, 0.4);">
+右下角为变换中心
+</div>
+</body>
+</html>

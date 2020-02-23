@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> 径向渐变背景 </title>
+	<style type="text/css">
+	/* 为div元素增加边框 */
+	div{
+		height: 300px;
+		width: 600px;
+	}
+	</style>
+</head>
+<body>
+background:radial-gradient(red, blue)、红蓝径向渐变
+<div id="dv1" style="background:radial-gradient(red, blue);"></div>
+是否为椭圆渐变：<input type="checkbox" id="shape" onchange="change();"><p>
+x：<input id="x" style="width:360px" type="range" min="0" max="300" value="0"
+	onchange="change();"><p>
+y：<input id="y" style="width:360px" type="range" min="0" max="300" value="0"
+	onchange="change();">
+<script type="text/javascript">
+function change(){
+	var x = document.getElementById("x").value;
+	var y = document.getElementById("y").value;
+	var isEllipse = document.getElementById("shape").checked;
+	if (isEllipse)
+	{
+		// 指定使用椭圆渐变
+		document.getElementById("dv1").style.background = 
+			"radial-gradient(ellipse at " + x + "px " + y + "px" + ", red, blue)";
+	}
+	else
+	{
+		// 不指定形状，默认是圆形
+		document.getElementById("dv1").style.background = 
+			"radial-gradient(at " + x + "px " + y + "px" + ", red, blue)";
+	}
+}
+</script>
+</body>
+</html>

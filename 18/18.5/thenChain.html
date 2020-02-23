@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> 链式调用then方法 </title>
+</head>
+<body>
+选择文件：<input type="file" id="target" name="target"/><p>
+<button onclick="show();">读取</button><p>
+<div id="result"></div>
+<script type="text/javascript">
+function readFile(){
+	var p = new Promise(function(resolve, reject){
+		var fr = new FileReader();
+		var file = document.querySelector("#target").files[0];
+		alert(file.type);
+		// 如果文件内容不是文本文件
+		if (/text\/\w+/.test(file.type) || file.type == "")
+		{
+			fr.readAsText(file, "utf-8");
+			fr.onload = event => {
+				// 调用resolve函数让Promise进入fulfilled状态
+				resolve(fr.result);
+			}
+		}
+		else
+		{
+			// 调用reject函数让Promise进入rejected状态
+			reject("文件内容不符合，本例只接受文本文件！");
+		}
+	});
+	return p;
+}
+function show()
+{
+	// 调用then方法，传入resolve和reject函数
+	readFile().then(function(data)
+	{
+		document.querySelector("#result").innerHTML = data;
+		return data;
+	}, function(reason){
+		alert(reason);
+	})
+	// 再次调用then方法，本次只传入一个resolve函数
+	.then(data => {
+		// 解析上次resolve函数返回的数据 
+		var book = JSON.parse(data);
+		document.querySelector("#result").innerHTML += 
+			"<br/>书名：" + book.name;
+		document.querySelector("#result").innerHTML +=
+			"<br/>价格：" + book.price;
+		document.querySelector("#result").innerHTML +=
+			"<br/>作者：" + book.author;
+	});
+}
+</script>
+</body>
+</html>

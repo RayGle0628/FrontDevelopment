@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> matrix3d变形 </title>
+	<style type="text/css">
+		div {
+			position: absolute;
+			width: 120px;
+			height: 120px;
+			background-color: rgba(200,200,200,0.5);
+			border: 2px solid black;
+		}
+		div.a {
+			left: 150px;
+			top: 50px;
+		}
+		div.b {
+			left: 150px;
+			top: 200px;
+		}
+		div.c {
+			left: 150px;
+			top: 350px;
+		}
+		div.d {
+			left: 150px;
+			top: 500px;
+		}
+	</style>
+</head>
+<body>
+<div class="a">
+未变换之前
+</div>
+<div class="a" style="transform:scale3d(2, 0.6, 0.8)">
+使用scale3d变换
+</div>
+<div class="b">
+未变换之前
+</div>
+<div class="b"
+style="transform:matrix3d(2, 0, 0, 0, 0, 0.6, 0, 0, 0, 0, 0.8, 0, 0, 0, 0, 1);">
+使用matrix3d变换
+</div>
+
+<div class="c">
+未变换之前
+</div>
+<div class="c" style="transform:translate3d(20px, -30px, 40px)">
+使用scale3d变换
+</div>
+<div class="d">
+未变换之前
+</div>
+<div class="d" 
+style="transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 20, -30, 40, 1);">
+使用matrix3d变换
+</div>
+</body>
+</html>

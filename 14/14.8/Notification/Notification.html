@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> 通知测试 </title>
+	<script type="text/javascript">
+	let fkNotify;
+	function notifyMe() {
+		// 检查当前浏览器是否支持通知API
+		if (!("Notification" in window))
+		{
+			alert("当前浏览器不支持桌面通知！");
+		}
+		// 如果通知已经得到了用户授权
+		else if (Notification.permission === "granted")
+		{
+			// 创建通知
+			fkNotify = new Notification("您好，来自yeeku的通知！"
+				, {icon:"fklogo.gif"});
+		}
+		// 如果通知API没有被用户明确拒绝
+		else if (Notification.permission === "default")
+		{
+			// 请求获得通知权限
+			Notification.requestPermission(function (permission) {
+				// 如果用户授权接受通知API
+				if (permission === "granted")
+				{
+					fkNotify = new Notification("您好，来自yeeku的通知！"
+						, {icon:"fklogo.gif"});
+				}
+			});
+		}
+		if(fkNotify)
+		{
+			fkNotify.addEventListener("show" , function(){
+				alert("通知被显示出来");
+			}, false);
+			fkNotify.addEventListener("close" , function(){
+				alert("通知被关闭");
+			}, false);
+		}
+		// 如果用户明确拒绝了通知API，程序将不再使用通知API
+	}
+	function closeNotify()
+	{
+		fkNotify.close();
+	}
+	</script>
+</head>
+<body>
+<button onclick="notifyMe();">发送通知</button>
+<button onclick="closeNotify();">关闭通知</button>
+</body>
+</html>

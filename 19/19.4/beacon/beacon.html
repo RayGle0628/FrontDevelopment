@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> beacon测试 </title>
+	<script type="text/javascript">
+	window.addEventListener("unload", handler, false);
+	function handler()
+	{
+		// 指定向a.jsp发送数据
+		navigator.sendBeacon("a.jsp" , '来自客户端的beacon数据');
+	}
+	</script>
+</head>
+<body>
+<button onclick="handler();">测试</button>
+<a href="http://www.crazyit.org">疯狂Java联盟</a>
+</body>
+</html>

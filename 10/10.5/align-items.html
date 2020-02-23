@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> align-items </title>
+	<style type="text/css">
+		div#container {
+			border: 1px solid black;
+			padding: 5px;
+			width: 600px;
+			height: 140px;
+			display: flex;
+		}
+		div>div{
+			border: 1px solid #aaf;
+			padding:5px;
+			width:80px;
+		}
+	</style>
+</head>
+<body>
+<div id="container">
+	<div style="font-size:12px;">栏目一</div>
+	<div style="font-size:24px;">栏目二</div>
+	<div style="font-size:36px;">栏目三</div>
+</div>
+<button onclick="change(this.innerHTML);">flex-start</button>
+<button onclick="change(this.innerHTML);">flex-end</button>
+<button onclick="change(this.innerHTML);">center</button>
+<button onclick="change(this.innerHTML);">baseline</button>
+<button onclick="change(this.innerHTML);">stretch</button>
+<script type="text/javascript">
+function change(val){
+	document.getElementById('container').style.alignItems = val;
+}
+</script>
+</body>
+</html>

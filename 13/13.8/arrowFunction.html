@@ -1,0 +1,27 @@
+<script type="text/javascript">
+var arr = ["yeeku", "fkit", "leegang", "crazyit"];
+// 使用函数作为map()方法的参数
+var newArr1 = arr.map(function(ele){ 
+	return ele.length;
+});
+// 使用箭头函数作为map()方法的参数
+var newArr2 = arr.map((ele) => {
+	return ele.length;
+});
+// 由于箭头函数只有一个形参，可以省略形参列表的圆括号
+// 箭头函数执行体只有一条return语句，可以省略return关键字
+var newArr3 = arr.map(ele => ele.length);
+console.log(newArr3);
+// 使用函数作为forEach()方法的参数
+arr.forEach(function(ele){
+	console.log(ele);
+});
+// 使用箭头函数作为map()方法的参数
+arr.forEach((ele) => {
+	console.log(ele);
+});
+// 由于箭头函数只有一个形参，可以省略形参列表的圆括号
+// 箭头函数执行体只有一条语句，可以省略执行体的花括号
+arr.forEach(ele => console.log(ele));
+</script>
+

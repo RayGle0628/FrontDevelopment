@@ -1,0 +1,14 @@
+<script type="text/javascript">
+	// 直接定义一个函数，并未指定该函数属于哪个对象。
+	// 该对象默认属于window对象
+	function hello(name)
+	{
+		document.write(name + ", 您好<br />");		
+	}
+	// 访问hello,将输出hello函数的代码。
+	alert(hello);
+	// 对hello变量赋值，相当于把hello函数（也是变量）重新赋值了
+	hello = "疯狂软件";
+	// hello只是一个普通变量，不是函数了，下面代码出错
+	hello("孙悟空");     // ①
+</script>

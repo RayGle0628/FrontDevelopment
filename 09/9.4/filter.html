@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> fiter属性 </title>
+	<style type="text/css">
+		input {
+			width: 520px;
+		}
+	</style>
+</head>
+<body>
+<div style="display:flex;text-align:center">
+	<figure>
+		<img src="android.png" alt="android"/>
+		<figcaption>原始图片</figcaption>
+	</figure>
+	<figure id="t">
+		<img src="android.png" alt="android"/>
+		<figcaption>滤镜效果</figcaption>
+	</figure>
+</div>
+blur:<input type="range" min="0" max="20" value="0" 
+onchange="document.getElementById('t').style.filter = 'blur(' + this.value + 'px)';"/><p>
+brightness:<input type="range" min="0" max="300" value="100" 
+onchange="document.getElementById('t').style.filter = 'brightness(' + this.value + '%)';"/><p>
+contrast:<input type="range" min="0" max="300" value="100" 
+onchange="document.getElementById('t').style.filter = 'contrast(' + this.value + '%)';"/><p>
+drop-shadow:<input type="range" min="0" max="20" value="0" 
+onchange="document.getElementById('t').style.filter = 'drop-shadow(' + this.value + 
+	'px ' + this.value + 'px 1px rgba(255,0,0,0.5))';"/><p>
+grayscale:<input type="range" min="0" max="100" value="0" 
+onchange="document.getElementById('t').style.filter = 'grayscale(' + this.value + '%)';"/><p>
+hue-rotate:<input type="range" min="0" max="360" value="0" 
+onchange="document.getElementById('t').style.filter = 'hue-rotate(' + this.value + 'deg)';"/><p>
+invert:<input type="range" min="0" max="100" value="0" 
+onchange="document.getElementById('t').style.filter = 'invert(' + this.value + '%)';"/><p>
+opacity:<input type="range" min="0" max="100" value="100" 
+onchange="document.getElementById('t').style.filter = 'opacity(' + this.value + '%)';"/><p>
+saturate:<input type="range" min="0" max="300" value="100" 
+onchange="document.getElementById('t').style.filter = 'saturate(' + this.value + '%)';"/><p>
+sepia:<input type="range" min="0" max="100" value="0" 
+onchange="document.getElementById('t').style.filter = 'sepia(' + this.value + '%)';"/><p>
+</body>
+</html>

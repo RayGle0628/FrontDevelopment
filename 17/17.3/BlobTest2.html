@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> Blob对象 </title>
+</head>
+<body>
+<script type="text/javascript">
+// 创建长度为32的Int16Array数组。
+var arr = new Int16Array(32);
+var b1 = new Blob([arr], {type:"text/plain"});
+console.log(b1.size); // 输出64
+console.log(b1.type); // 输出text/plain
+// 截取b1对象从2开始、直到结束的全部数据
+var b2 = b1.slice(2);
+console.log(b2.size); // 输出62
+</script>
+</body>
+</html>

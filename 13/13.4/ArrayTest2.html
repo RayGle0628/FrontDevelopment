@@ -1,0 +1,25 @@
+<script type="text/javascript">
+var a = ["html", 2, "yeeku"];
+console.log(a.concat(4, 5)); // 输出["html", 2, "yeeku", 4, 5]
+console.log(a.concat([4, 5])); // 输出["html", 2, "yeeku", 4, 5]
+console.log(a.concat([4,5],[6,7])); // 输出["html", 2, "yeeku", 4, 5, 6, 7]
+var b = ["html", 20, "is", 99, "good"];
+console.log(b.join()); // 输出html,20,is,99,good
+console.log(b.join("+")); // 输出html,20,is,99,good
+var c = ["html", "css", "jquery", "bootstrap"];
+c.reverse();
+console.log(c); // 输出["bootstrap", "jquery", "css", "html"]
+var d = ["yeeku", "leegang", "crazyit", "fkit", "charlie"];
+console.log(d.slice(3)); // 输出["fkit", "charlie"]
+console.log(d.slice(2, 4)); // 输出["crazyit", "fkit"]
+console.log(d.slice(1, -2)); // 输出["leegang", "crazyit"]
+console.log(d.slice(-3, -2)); // 输出["crazyit"]
+var e = ["yeeku", "leegang", "crazyit", "fkit", "charlie"];
+// 输出["fkit", "charlie"]，e变成["yeeku", "leegang", "crazyit"]
+console.log(e.splice(3));
+// 输出["leegang"]，e变成["yeeku", "crazyit"]
+console.log(e.splice(1, 1));
+// 输出["yeeku"]，e变成[20, 30, 40, "crazyit"]
+console.log(e.splice(0, 1, 20, 30, 40));
+console.log(e);
+</script>

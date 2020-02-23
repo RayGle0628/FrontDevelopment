@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> 线性渐变背景 </title>
+	<style type="text/css">
+	/* 为div元素增加边框 */
+	div{
+		height: 300px;
+		width: 300px;
+	}
+	</style>
+</head>
+<body>
+background:linear-gradient(0deg, red, blue)、红蓝线性渐变
+<div id="dv1" style="background:linear-gradient(0deg, red, blue);"></div>
+角度：<input style="width:360px" type="range" min="0" max="360" value="0"
+	onchange="change(this.value);">
+<script type="text/javascript">
+function change(val){
+	var s = "linear-gradient(" + val + ", red, blue)";
+	document.getElementById("dv1").style.background = 
+		"linear-gradient(" + val + "deg, red, blue)";
+}
+</script>
+</body>
+</html>

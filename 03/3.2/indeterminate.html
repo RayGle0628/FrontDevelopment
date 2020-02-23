@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> indeterminate属性 </title>
+</head>
+<body>
+<form action="pro.action" method="post" autocomplete="on">
+<label id="colorLb">红色：
+<input type="checkbox" name="color" /></label><p>
+<input type="button" value="设置" 
+	onclick="document.getElementById('colorLb').control.indeterminate=true;"/>
+<input type="button" value="获取" 
+	onclick="alert(document.getElementById('colorLb').control.indeterminate);"/>
+</form>
+</body>
+</html>

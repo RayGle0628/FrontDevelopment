@@ -1,0 +1,17 @@
+<script type="text/javascript">
+function Person() {
+	// Person()作为构造器使用时，this代表该构造器创建的对象
+	this.age = 0;
+	setInterval(function growUp(){
+		// 对于普通函数来说，直接执行该函数时，this代表全局对象（window）
+		// 因此下面的this不同于Person构造器中的this
+		console.log(this === window);
+		this.age++;
+	}, 1000);
+}
+var p = new Person();
+setInterval(function(){
+	console.log(p.age); // 此处访问p对象的age，将总是输出0
+}, 1000);
+</script>
+

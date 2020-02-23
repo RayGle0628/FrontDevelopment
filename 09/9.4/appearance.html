@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> appearance测试 </title>
+	<style type="text/css">
+	div
+	{
+		appearance:none;
+		-moz-appearance:button; /* Firefox */
+		-webkit-appearance:button; /* Safari 、Opera和 Chrome */
+		width: 200px;
+		height: 40px;
+		text-align:center;
+	}
+	</style>
+</head>
+<body>
+<div id="target"></div><p>
+<button onclick="change(this.innerHTML);">none</button>
+<button onclick="change(this.innerHTML);">button</button>
+<button onclick="change(this.innerHTML);">checkbox</button>
+<button onclick="change(this.innerHTML);">push-button</button>
+<button onclick="change(this.innerHTML);">radio</button>
+<button onclick="change(this.innerHTML);">searchfield</button>
+<button onclick="change(this.innerHTML);">searchfield-cancel-button</button>
+<button onclick="change(this.innerHTML);">slider-horizontal</button>
+<button onclick="change(this.innerHTML);">slider-vertical</button>
+<button onclick="change(this.innerHTML);">sliderthumb-horizontal</button>
+<button onclick="change(this.innerHTML);">sliderthumb-vertical</button>
+<button onclick="change(this.innerHTML);">square-button</button>
+<script type="text/javascript">
+	function change(val){
+		var target = document.getElementById("target");
+		target.style.appearance = val;
+		target.style.webkitAppearance = val;
+		target.style.MozAppearance = val;
+	}
+</script>
+</body>
+</html>

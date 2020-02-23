@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> align-content </title>
+	<style type="text/css">
+		div#container {
+			border: 1px solid black;
+			padding: 5px;
+			width: 350px;
+			height: 160px;
+			display: flex;
+			flex-wrap:wrap;
+		}
+		div>div {
+			border: 1px solid #aaf;
+			padding:5px;
+			width:100px;
+		}
+	</style>
+</head>
+<body>
+<div id="container">
+	<div>栏目一</div>
+	<div>栏目二</div>
+	<div>栏目三</div>
+	<div>栏目四</div>
+	<div>栏目五</div>
+	<div>栏目六</div>
+	<div>栏目七</div>
+	<div>栏目八</div>
+	<div>栏目九</div>
+</div>
+<button onclick="change(this.innerHTML);">flex-start</button>
+<button onclick="change(this.innerHTML);">flex-end</button>
+<button onclick="change(this.innerHTML);">center</button>
+<button onclick="change(this.innerHTML);">space-between</button>
+<button onclick="change(this.innerHTML);">space-around</button>
+<script type="text/javascript">
+function change(val){
+	document.getElementById('container').style.alignContent = val;
+}
+</script>
+</body>
+</html>

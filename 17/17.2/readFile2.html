@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> DataView测试 </title>
+</head>
+<body>
+浏览文件：<input id="file1" type="file"/><br/>
+<div id="result"></div>
+<input type="button" value="读取文本文件" onclick="read();"/><br/>
+<script type="text/javascript">
+var reader = null;
+// 如果浏览器支持FileReader对象
+if(FileReader)
+{
+	reader = new FileReader();
+}
+// 如果浏览器不支持FileReader对象，弹出提示信息
+else
+{
+	alert("浏览器暂不支持FileReader");
+}
+var read = function()
+{
+	// 通过正则表达式验证该文件是否为文本文件，
+	// 如果用户选择的第一个文件是文本文件
+	if(/text\/\w+/.test(document.getElementById("file1").files[0].type))
+	{
+		// 以文本文件的方式读取用户选择的第一个文件
+		reader.readAsArrayBuffer(document.getElementById("file1").files[0]);
+		// 当reader读取数据完成时将会激发该函数
+		reader.onload = function()
+		{
+			var data = new DataView(reader.result);
+			var m = data.getInt8(0);
+			console.log(m);
+			// 使用big-endian方式读取
+			var m2 = data.getInt16(0);
+			console.log(m2);
+			// 使用little-endian方式读取
+			var m3 = data.getInt16(0, true);
+			console.log(m3);
+		};
+	}
+	else
+	{
+		alert("你选择的文件不是文本文件！");
+	}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<script type="text/javascript">
+	// 定义一个Person类
+	function Person(name, age)
+	{
+		this.name = name;
+		this.age = age;
+	}
+	// 使用prototype为Person类添加sayHello方法
+	Person.prototype.sayHello = function()
+	{
+		console.log(this.name + "向您打招呼！");
+	}
+	var per = new Person("牛魔王", 22);  
+	per.sayHello(); // 输出：牛魔王向您打招呼！
+	// 定义一个Student类
+	function Student(grade){
+		 this.grade = grade;
+	}
+	// 将Student的prototype设为Person对象
+	Student.prototype = new Person("未命名" , 0);
+	// 使用prototype为Student类添加intro方法
+	Student.prototype.intro = function(){  
+		console.log("%s是个学生，读%d年级" , this.name, this.grade);
+	}
+	var stu = new Student(5);
+	stu.name = "孙悟空";
+	console.log(stu instanceof Student); // 输出true
+	console.log(stu instanceof Person); // 输出true
+	stu.sayHello(); // 输出：孙悟空向您打招呼！ 
+	stu.intro(); //输出：孙悟空是个学生，读5年级
+</script>

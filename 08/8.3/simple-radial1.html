@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> 径向渐变背景 </title>
+	<style type="text/css">
+	/* 为div元素增加边框 */
+	div{
+		height: 300px;
+		width: 500px;
+	}
+	</style>
+</head>
+<body>
+background:radial-gradient(red, blue)、红蓝径向渐变
+<div id="dv1" style="background:radial-gradient(red, blue);"></div>
+<button onclick="change(this.innerHTML);">left top</button>
+<button onclick="change(this.innerHTML);">left center</button>
+<button onclick="change(this.innerHTML);">left bottom</button>
+<button onclick="change(this.innerHTML);">center top</button>
+<button onclick="change(this.innerHTML);">center center</button>
+<button onclick="change(this.innerHTML);">center bottom</button>
+<button onclick="change(this.innerHTML);">right top</button>
+<button onclick="change(this.innerHTML);">right center</button>
+<button onclick="change(this.innerHTML);">right bottom</button>
+<script type="text/javascript">
+function change(val){
+	document.getElementById("dv1").style.background = 
+		"radial-gradient(at " + val + ", red, blue)";
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> Blob对象 </title>
+</head>
+<body>
+<script type="text/javascript">
+var blob1 = new Blob(["hello" , "fkjava"]);
+console.log(blob1.size); // blob1包含11个英文字符，因此此处输出11
+var blob2 = new Blob(["html5"]);
+var blob3 = new Blob([blob1, blob2], {type:"text/plain"});
+console.log(blob3.size); // 输出16
+console.log(blob3.type); // 输出text/plain
+</script>
+</body>
+</html>

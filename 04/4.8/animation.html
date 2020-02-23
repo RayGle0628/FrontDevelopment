@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> 简单动画 </title>
+</head>
+<body>
+<h2> 简单动画 </h2>
+<canvas id="mc" width="380" height="320"
+	style="border:1px solid black"></canvas>
+<script type="text/javascript">
+	// 通过prototype为CanvasRenderingContext2D类增加一个方法
+	CanvasRenderingContext2D.prototype.fillCircle =
+		function(x, y, radius, pattern)
+	{
+		ctx.save();
+		ctx.translate(x, y);
+		ctx.fillStyle = pattern;
+		ctx.beginPath();
+		// 添加圆弧
+		ctx.arc(0, 0, radius, 0, Math.PI * 2, true);
+		ctx.closePath();
+		ctx.fill()
+		ctx.restore();
+	}
+	// 获取canvas元素对应的DOM对象
+	var canvas = document.getElementById('mc');
+	// 获取在canvas上绘图的CanvasRenderingContext2D对象
+	var ctx = canvas.getContext('2d');
+	var radius = 15;
+	var rg = ctx.createRadialGradient(-radius/2, -radius/2, 0,
+		-radius/2, -radius/2, radius * 1.67);
+	// 向径向渐变上添加颜色
+	rg.addColorStop(0.1 , "#f0f0f0");
+	rg.addColorStop(0.9 , "#111");
+	var x = canvas.width / 2;
+	var y = 20;
+	var xSpeed = Math.random() * 11 - 5;
+	var ySpeed = Math.random() * 5 + 2;
+	function draw()
+	{
+		ctx.fillStyle = "#fff";
+		// 清除上一次绘制的内容
+		ctx.clearRect(x - radius - 2, y - radius - 2,
+			x + xSpeed + radius + 2, y + ySpeed + radius + 2);
+		x += xSpeed;
+		y += ySpeed;
+		// 绘制圆形
+		ctx.fillCircle(x, y, 15, rg);
+		// 如果小球到了左边界或右边界，发生碰撞返回
+		if(x <= radius || x >= canvas.width - radius)
+		{
+			xSpeed = -xSpeed;
+		}
+		// 如果小球到了上边界或下边界，发生碰撞返回
+		if(y <= radius || y > canvas.height - radius)
+		{
+			ySpeed = -ySpeed;
+		}
+	}
+	// 使用定时器控制每隔0.2秒执行一次draw函数
+	setInterval(draw , 200);
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> perspective </title>
+	<style type="text/css">
+		div {
+			position: absolute;
+			width: 120px;
+			height: 120px;
+			background-color: #eee;
+			border: 2px solid black;
+		}
+		div.a {
+			left: 220px;
+			top: 30px;
+		}
+		div.b {
+			left: 220px;
+			top: 250px;
+		}
+		div.c {
+			left: 220px;
+			top: 450px;
+		}
+	</style>
+</head>
+<body style="perspective:500px">
+<input type="range" min="100" max="2000" value="500" style="width:560px"
+	onchange="document.body.style.perspective=this.value+'px';">
+<div class="a">文字一</div> 
+<div class="a" style="transform:translateZ(120px);background-color:rgba(250,200,200,0.7);">文字一</div>
+<div class="b">文字二</div>
+<div class="b" style="transform:translateZ(-80px);background-color: rgba(250,200,200,0.7);">文字二</div>
+<div class="c">文字三</div>
+<div class="c" style="transform:rotateX(30deg);background-color: rgba(250,200,200,0.7);">文字三</div>
+</body>
+</html>

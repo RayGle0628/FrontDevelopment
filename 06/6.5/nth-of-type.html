@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> :nth-of-type </title>
+	<style type="text/css">
+		p {
+			padding: 2px;
+		}
+		/* 匹配p选择器，且是与它同类型、同级的兄弟元素中
+			的奇数个节点的CSS样式 */
+		p:nth-of-type(odd){
+			margin: 10px;
+			border: 2px dotted black;
+		}
+		/* 匹配p选择器，且是与它同类型、同级的兄弟元素中
+			的偶数个节点的CSS样式 */
+		p:nth-of-type(even){
+			padding: 4px;
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+<div>
+	<div id="java">疯狂Java讲义</div>
+	<div id="javaee">轻量级Java EE企业应用实战</div>
+	<p id="ajax">疯狂Ajax讲义</p>
+	<p id="xml">疯狂XML讲义</p>
+	<p id="ejb">经典Java EE企业应用实战</p>
+	<p id="android">疯狂Android讲义</p>
+	<p>疯狂Java联盟</p>
+	<div id="swift">疯狂Swift讲义</div>
+</div>
+</body>
+</html>

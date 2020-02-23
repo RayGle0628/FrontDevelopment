@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> id属性 </title>
+
+</head>
+<body>
+<div id="show" style="width:400px;height:120px;background-color:red;"></div>
+<a href="#" onclick="change();">改变颜色</a>
+<script type="text/javascript">
+	var change = function()
+	{
+		var div = document.getElementById("show");  // ①
+		div.style.backgroundColor = div.style.backgroundColor == 'red'?
+			'green' : (div.style.backgroundColor == 'green'? 'blue': 'red');
+	}
+</script>
+</body>
+</html>

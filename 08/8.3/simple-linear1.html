@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> 线性渐变背景 </title>
+	<style type="text/css">
+	/* 为div元素增加边框 */
+	div{
+		height: 300px;
+		width: 300px;
+	}
+	</style>
+</head>
+<body>
+background:linear-gradient(red, blue)、红蓝线性渐变
+<div id="dv1" style="background:linear-gradient(red, blue);"></div>
+<button onclick="change(this.innerHTML);">to top</button>
+<button onclick="change(this.innerHTML);">to bottom</button>
+<button onclick="change(this.innerHTML);">to left</button>
+<button onclick="change(this.innerHTML);">to right</button>
+<button onclick="change(this.innerHTML);">to left top</button>
+<button onclick="change(this.innerHTML);">to right top</button>
+<button onclick="change(this.innerHTML);">to left bottom</button>
+<button onclick="change(this.innerHTML);">to right bottom</button>
+<script type="text/javascript">
+function change(val){
+	document.getElementById("dv1").style.background = 
+		"linear-gradient(" + val + ", red, blue)";
+}
+</script>
+</body>
+</html>

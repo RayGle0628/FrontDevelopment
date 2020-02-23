@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> 电池信息 </title>
+<script type="text/javascript">
+// 调用getBattery()获取电池相关信息
+navigator.getBattery().then(function(battery)
+{
+	// 获取电池的chargingchange事件添加监听器
+	battery.addEventListener('chargingchange', function()
+	{
+		// 获取电池的相关信息
+		console.log("电池是否正在充电：" + battery.charging);
+		console.log("充电时间：" + battery.chargingTime);
+		console.log("不充电时间：" + battery.dischargingTime);
+		console.log("充电程度：" + battery.level);
+	});
+});
+</script>
+</head>
+<body>
+</body>
+</html>

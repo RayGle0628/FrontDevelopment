@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> 根据主键查询 </title>
+	<style type="text/css">
+		/* 设置表格的样式 */
+		table{
+			width: 900px;
+			border: 1px solid lightgrey;
+			border-collapse: collapse;
+			vertical-align: top;
+		}
+		/* 设置单元格的样式 */
+		td{
+			padding: 5px;
+			border: 1px solid lightgrey;
+		}
+		/* 设置表格行的背景色 */
+		tr{
+			background: linear-gradient(to right, #f6f6f6, #fff);
+		}
+		/* 设置鼠标悬停时表格行的背景色 */
+		tr:hover{
+			background: linear-gradient(to right, #eee, #f6f6f6);
+		}
+	</style>
+	<script type="text/javascript">
+		function createDb(event)
+		{
+			idb = event.target.result;
+			// 定义Object Store的名称
+			var storeName = "books";
+			// 如果要创建Object Store已存在，先删除它
+			if (idb.objectStoreNames.contains(storeName))
+			{
+				idb.deleteObjectStore(storeName);  // ①
+			}
+			// 定义创建Object Store的的选项
+			var opt = {
+				// 指定主键
+				keyPath: "isbn",
+				// 关闭主键的自增长
+				autoIncrement: false
+			};
+			// 创建Object Store
+			var store = idb.createObjectStore(storeName, opt);  // ②
+			// 对name属性创建惟一索引
+			store.createIndex("by_name", "name", {unique: true});
+			// 对content属性创建索引
+			store.createIndex("by_content", "content");
+			// 对author属性创建索引
+			store.createIndex("by_author", "author");
+			// 对price属性创建索引
+			store.createIndex("by_price", "price");
+		}
+		var dbName = "fkDb";
+		var version = 2;
+		function add()
+		{
+			// 打开数据库连接
+			var request = indexedDB.open(dbName , version);
+			var idb;
+			request.onsuccess = function(event)
+			{
+				idb = request.result;
+				// 打开针对books对象存储的读写事务
+				var tx = idb.transaction("books", "readwrite");
+				var booksStore = tx.objectStore("books");
+				var book = {
+					isbn: document.querySelector("#isbn").value,
+					name: document.querySelector("#name").value,
+					content: document.querySelector("#content").value,
+					author: document.querySelector("#author").value,
+					price: parseFloat(document.querySelector("#price").value),
+				}
+				// 添加图书
+				var objectStoreRequest = booksStore.add(book);
+				// 为添加数据的请求绑定事件处理函数
+				objectStoreRequest.onsuccess = function(event)
+				{
+					alert("数据添加成功！");
+					// 重设表单内所有表单控件的值
+					document.querySelector("#bookForm").reset();
+					list();
+				};
+			}
+			request.onerror = function(event)
+			{
+				alert("数据库打开失败!");
+			}
+			request.onupgradeneeded = createDb;
+		}
+		function list()
+		{
+			var dbName = "fkDb";
+			// 打开数据库连接
+			var request = indexedDB.open(dbName , version);
+			var idb;
+			request.onsuccess = function(event)
+			{
+				idb = request.result;
+				// 打开针对books对象存储的只读事务
+				var tx = idb.transaction("books", "readonly");
+				var booksStore = tx.objectStore("books");
+				// 获取全部图书
+				var objectGetRequest = booksStore.getAll();
+				// 为获取数据的请求绑定事件处理函数
+				objectGetRequest.onsuccess = function(event)
+				{
+					// 获取页面上bookTb元素
+					var bookTb = document.querySelector("#bookTb");
+					// 清空bookTb元素中原有的内容
+					bookTb.innerHTML = "";
+					// 获取查询得到的结果，该结果是一个数组
+					var books = objectGetRequest.result;
+					// 遍历结果数组，将数组中的对象添加到表格中
+					for (var i = 0; i < books.length; i++ )
+					{
+						var row = bookTb.insertRow(i);
+						var j = 0;
+						for (var prop in books[i])
+						{
+							var cell = row.insertCell(j++);
+							cell.innerHTML = books[i][prop];
+						}
+						var opCell = row.insertCell(5);
+						opCell.innerHTML = "<button onclick='delBook(\"" +
+							books[i]['isbn'] + "\");'>删除</button>";
+					}
+				};
+			}
+			request.onerror = function(event)
+			{
+				alert("数据库打开失败!" + event);
+			}
+			request.onupgradeneeded = createDb;
+		}
+		function delBook(key)
+		{
+			var dbName = "fkDb";
+			// 打开数据库连接
+			var request = indexedDB.open(dbName , version);
+			var idb;
+			request.onsuccess = function(event)
+			{
+				idb = request.result;
+				// 打开针对books对象存储的读写事务
+				var tx = idb.transaction("books", "readwrite");
+				var booksStore = tx.objectStore("books");
+				// 删除指定图书
+				var objectDeleteRequest = booksStore.delete(key);
+				// 为删除数据的请求绑定事件处理函数
+				objectDeleteRequest.onsuccess = function(event)
+				{
+					alert("图书删除成功！");
+					list();
+				};
+			}
+			request.onerror = function(event)
+			{
+				alert("数据库打开失败!" + event);
+			}
+			request.onupgradeneeded = createDb;
+		}
+		function query()
+		{
+			var dbName = "fkDb";
+			// 打开数据库连接
+			var request = indexedDB.open(dbName , version);
+			var idb;
+			request.onsuccess = function(event)
+			{
+				idb = request.result;
+				// 打开针对books对象存储的只读事务
+				var tx = idb.transaction("books", "readonly");
+				var booksStore = tx.objectStore("books");
+				// 使用用户输入的数据来创建IDBKeyRange
+				var range = IDBKeyRange.bound(
+					document.querySelector("#isbnlower").value, 
+					document.querySelector("#isbnupper").value);
+				// 获取符合条件的数据
+				var objectQueryRequest = booksStore.openCursor(range);
+				// 获取页面上bookTb元素
+				var bookTb = document.querySelector("#bookTb");
+				// 清空bookTb元素中原有的内容
+				bookTb.innerHTML = "";
+				// 为查询数据的请求绑定事件处理函数
+				objectQueryRequest.onsuccess = function(event)
+				{
+					// 获取查询得到的结果，该结果是一个数组
+					var cursor = objectQueryRequest.result;
+					if (cursor)
+					{
+						// 向bookTb内插入一行
+						var row = bookTb.insertRow(0);
+						var j = 0;
+						// 通过value属性获取该cursor指向的数据。
+						for (var prop in cursor.value)
+						{
+							var cell = row.insertCell(j++);
+							cell.innerHTML = cursor.value[prop];
+						}
+						var opCell = row.insertCell(5);
+						opCell.innerHTML = "<button onclick='delBook(\"" +
+							cursor.value['isbn'] + "\");'>删除</button>";
+						cursor.continue();
+					}
+				};
+			}
+			request.onerror = function(event)
+			{
+				alert("数据库打开失败!" + event);
+			}
+			request.onupgradeneeded = createDb;
+		}
+	</script>
+</head>
+<body onload="list();">
+<form id="bookForm">
+ISBN：<input id="isbn" name="isbn" type="text" size="40"/>
+书名：<input id="name" name="name" type="text" size="40"/><p>
+作者：<input id="author" name="author" type="text" size="40"/>
+价格：<input id="price" name="price" type="number" min="10" max="200" step="0.1"/><p>
+内容简介：<input id="content" name="content" type="text" size="80"/><p>
+<button onclick="add();" type="button">添加</button>
+</form>
+ISBN下限：<input id="isbnlower" name="isbnlower" type="text" />
+ISBN上限：<input id="isbnupper" name="isbnupper" type="text" />
+<button onclick="query();" type="button">查询</button><p>
+<table>
+<tr>
+	<th width="6%">ISBN</th><th>书名</th><th>内容简介</th>
+	<th width="6%">作者</th><th  width="6%">价格</th><th width="7%">操作</th>
+</tr>
+<tbody id="bookTb">
+</tbody>
+</table>
+</body>
+</html>

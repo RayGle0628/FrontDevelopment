@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> 生成Blob下载 </title>
+</head>
+<body>
+<h2> 生成Blob下载 </h2>
+<textarea rows="3" cols="50"
+	id="content" name="content"></textarea><p>
+<button onclick="generate();">创建下载</button><p>
+<div id="out"></div>
+<script type="text/javascript">
+	function generate()
+	{
+		// 获取用户在content文本框内输入的内容
+		var str = document.querySelector("#content").value;
+		// 将用户输入的内容转换成Blob对象
+		var blob = new Blob([str], {type:"text/plain"});
+		var out = document.querySelector("#out");
+		// 使用createObjectURL将Blob对象转换成URL
+		out.innerHTML = "<a download='content.txt' href='" + 
+			URL.createObjectURL(blob) + "' target='_blank'>下载</a>";
+	}
+</script>
+</body>
+</html>

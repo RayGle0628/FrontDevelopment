@@ -1,0 +1,16 @@
+<script type="text/javascript">
+	// 定义全局变量test
+	var test = "全局变量"; 
+	// 定义函数myFun
+	function myFun()
+	{
+		// 函数内不使用var定义的age也是全局变量
+		age = 20;
+		// 函数内使用var定义的age是局部变量
+		var isMale = true;
+	}
+	myFun();
+	alert(test + "\n"
+		+ age);
+	alert(isMale);
+</script>

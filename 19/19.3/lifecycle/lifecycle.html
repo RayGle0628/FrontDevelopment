@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> SSE各阶段 </title>
+	<script type="text/javascript">
+		// 创建EventSource对象
+		var source = new EventSource("server.jsp");
+		// 为EventSource对象的onmessage事件绑定事件处理函数
+		source.onmessage = function(event)
+		{
+			// 通过event.data获取事件数据
+			document.querySelector("#show").innerHTML
+				+= "onmessage事件：" + event.data + "<br/>";
+		}
+		source.onopen = function(event)
+		{
+			if(source.readyState == 0)
+			{
+				document.querySelector("#show").innerHTML
+					+= "onopen事件：" + "连接断开" + "<br/>";
+			}
+			if(source.readyState == 1)
+			{
+				document.querySelector("#show").innerHTML
+					+= "onopen事件：" + "连接成功" + "<br/>";
+			}
+		}
+		source.onerror = function(event)
+		{
+			document.querySelector("#show").innerHTML
+				+= "onerror事件：" + "连接已经断开" + "<br/>";
+		}
+		function closeSSE()
+		{
+			// 调用close()方法关闭EventSource
+			source.close();
+			document.querySelector("#show").innerHTML
+				+= "调用close()方法关闭连接" + "<br/>";
+
+		}
+	</script>
+</head>
+<body>
+<div style="width:600px;height:240px;
+	overflow-y:auto;border:1px solid #333;" id="show"></div>
+<button onclick="closeSSE();">关闭连接</button>
+</body>
+</html>

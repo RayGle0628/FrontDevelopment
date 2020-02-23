@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> flex-wrap控制换行 </title>
+	<style type="text/css">
+		div#container {
+			border: 1px solid black;
+			padding: 5px;
+			width: 450px;
+			height: 140px;
+			display: flex;
+		}
+		div>div {
+			border: 1px solid #aaf;
+			width: 200px;
+			height: 60px;
+			padding:5px;
+		}
+	</style>
+</head>
+<body>
+<div id="container">
+	<div>栏目一</div>
+	<div>栏目二</div>
+	<div>栏目三</div>
+</div>
+<button onclick="change(this.innerHTML);">nowrap</button>
+<button onclick="change(this.innerHTML);">wrap</button>
+<button onclick="change(this.innerHTML);">wrap-reverse</button>
+<script type="text/javascript">
+function change(val){
+	document.getElementById('container').style.flexWrap = val;
+}
+</script>
+</body>
+</html>

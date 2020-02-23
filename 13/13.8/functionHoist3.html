@@ -1,0 +1,13 @@
+<script type="text/javascript">
+	function test(){
+		// 调用add函数
+		console.log(add(2, 5));
+		// 定义add函数（会发生函数提升）
+		function add(a , b)
+		{
+			console.log("执行add函数");
+			return a + b;
+		}
+	}
+	test();
+</script>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> catch方法 </title>
+</head>
+<body>
+<script type="text/javascript">
+function task(){
+	var p = new Promise(function(resolve, reject){
+		// 下面代码实现本任务的异步操作
+		setTimeout(function(){
+			console.log('耗时任务完成！');
+			resolve('fkjava.org');
+		}, 1000);
+	});
+	return p;
+}
+task().then(function(data){
+	console.log(data);
+	console.log(myData); // myData不存在，程序会抛出异常
+}).catch(function(err)
+{
+	console.log("错误：" + err);
+});
+</script>
+</body>
+</html>

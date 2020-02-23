@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> 在地图上定位 </title>
+	<style type="text/css">
+		html { height: 100% }
+		body { height: 100%; margin: 0px; padding: 0px }
+		#container { height: 100%; width:100%}
+	</style>	
+	<script type="text/javascript"
+		src="http://webapi.amap.com/maps?v=1.3&key=64620d4e376822f07d4fc16f5118b6f9">
+	</script>
+	<script type="text/javascript">
+	function initialize() 
+	{
+		navigator.geolocation.getCurrentPosition(function(position)
+		{
+			// 获取浏览器提供的地理位置信息
+			var lnglat = [position.coords.longitude, 
+				position.coords.latitude];
+			// 创建高德地图，指定把地图显示到container元素上
+			var map = new AMap.Map('container',{
+				resizeEnable: true,
+				zoom: 16,
+				center: lnglat
+			});
+			//	构建显示位置的信息窗口
+			var infoWindow = new AMap.InfoWindow({
+				content: "我在这里<br>疯狂软件教育中心"
+			});
+			// 打开信息窗口
+			infoWindow.open(map, lnglat);
+		},
+		function(error){alert("您的浏览器没有提供地理位置信息！");}
+		,
+		{
+			enableHighAccuracy:true,
+			maximumAge:1000
+		});
+	}
+	</script>
+</head>
+<body onload="initialize();">
+	<div id="container"></div>
+</body>
+</html>

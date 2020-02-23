@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> 首页 </title>
+	<style type="text/css">
+		/* 设置表格的样式 */
+		table{
+			display: inline-table;
+			width: 320px;
+			border: 1px solid lightgrey;
+			border-collapse: collapse;
+			vertical-align: top;
+			margin-right: 0px;
+		}
+		/* 设置单元格的样式 */
+		td{
+			padding:15px;
+			cursor: pointer;
+			border: 1px solid lightgrey;
+		}
+		/* 设置表格行的背景色 */
+		tr{
+			background: linear-gradient(to right, #f6f6f6, #fff);
+		}
+		/* 设置鼠标悬停时表格行的背景色 */
+		tr:hover{
+			background: linear-gradient(to right, #eee, #f6f6f6);
+		}
+		/* 设置显示内容的div元素的样式 */
+		div>div {
+			display: inline-block;
+			width:400px;
+			height:300px;
+			padding:10px;
+			box-sizing: border-box;
+			border:1px solid lightgrey;
+			margin-left: 0px;
+		}
+	</style>
+</head>
+<body>
+<div style="width:725px;">
+	<table border="1">
+		<tr><td title="java">疯狂Java讲义</td></tr>
+		<tr><td title="ee">轻量级Java EE企业应用实战</td></tr>
+		<tr><td title="android">疯狂Android讲义</td></tr>
+<tr><td title="html">疯狂HTML 5/CSS 3/JavaScript讲义</td></tr>
+<tr><td title="front">疯狂前端讲义</td></tr>
+	</table><div id="show"></div>
+</div>
+<script type="text/javascript">
+	var xhr = new XMLHttpRequest();
+	window.onload = function(){
+		// 页面加载时，替换history的状态
+		history.replaceState(null, "首页",
+			"index.html?id=java")
+	}
+	// 获取页面上所有td元素
+	var tdList = document.querySelectorAll("td");
+	// 遍历所有td元素，为它们的onclick事件绑定处理函数
+	for(var i = 0; i < tdList.length ; i++)
+	{
+		tdList[i].onclick = function(src){
+			// 以当前单元格的title为参数发送异步请求
+			sendGet("books.jsp?id=" + src.target.title);
+			// 向history压入状态
+			history.pushState({"cellTitle":src.target.title}, 
+				"首页", "index.html?id=" + src.target.title);
+			// 取消所有td元素的背景色
+			var tdList = document.querySelectorAll("td");
+			for(var i = 0; i < tdList.length ; i++)
+			{
+				tdList[i].style = undefined;
+			}
+			// 将当前单击的单元格设置背景色
+			src.target.style.background = 
+				"linear-gradient(to right, #ddd, #eee)";
+		}
+	}
+	function sendGet(url){
+		// 设置处理响应的回调函数
+		xhr.onreadystatechange = function()
+		{
+			if(xhr.readyState == 4 && xhr.status == 200)
+			{
+				// 获取服务器响应
+				document.querySelector("#show").innerHTML = xhr.responseText;
+			}
+		};
+		// 发送异步请求
+		xhr.open("GET" , url  , true);
+		// 发送请求
+		xhr.send();
+	}
+	// 为窗口的popstate事件绑定监听器
+	window.addEventListener("popstate", function(){
+		// 获取histroy的状态数据
+		var curTitle = history.state["cellTitle"];
+		var tdList = document.querySelectorAll("td");
+		// 取消所有单元格的背景色，只设置被选中单元格的背景色
+		for(var i = 0; i < tdList.length; i++)
+		{
+			if(tdList[i].title == curTitle)
+				tdList[i].style.background = "linear-gradient(to right, #ddd, #eee)";
+			else
+				tdList[i].style = undefined;
+		}
+		// 通过窗口地址栏获取请求参数
+		queryStr = window.location.href.split("?")[1];
+		// 发送异步请求
+	    sendGet("books.jsp?" + queryStr);
+	});
+</script>
+</body>
+</html>

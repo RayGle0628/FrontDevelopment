@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> Ajax请求 </title>
+</head>
+<body>
+<script type="text/javascript">
+var xhr;
+// 创建XMLHttpRequest对象
+if (window.XMLHttpRequest)
+{
+	xhr = new XMLHttpRequest();
+}
+else
+{
+	alert("浏览器不支持XMLHttpRequest对象");
+}
+// 设置处理响应的回调函数
+xhr.onreadystatechange = function()
+{
+	if(xhr.readyState == 4 && xhr.status == 200)
+	{
+		// 获取服务器响应
+		var res = eval(xhr.responseText);
+		for(var i = 0; i < res.length; i++)
+		{
+			document.body.innerHTML += res[i] + "<br>";
+		}
+	}
+};
+// 发送异步请求
+xhr.open("GET" , "books.json" , true);
+// 发送请求
+xhr.send(null);
+</script>
+</body>
+</html>

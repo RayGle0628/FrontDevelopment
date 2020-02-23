@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> SSE入门 </title>
+	<script type="text/javascript">
+		// 创建EventSource对象
+		var source = new EventSource("server.jsp");
+		// 为EventSource对象的onmessage事件绑定事件处理函数
+		source.onmessage = function(event)
+		{
+			// 通过event.data获取事件数据
+			document.querySelector("#show").innerHTML
+				+= event.data + "<br/>";
+		}
+	</script>
+</head>
+<body>
+<div style="width:600px;height:240px;
+	overflow-y:auto;border:1px solid #333;" id="show"></div>
+</body>
+</html>

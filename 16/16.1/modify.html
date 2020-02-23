@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> 监听存储事件 </title>
+	<script type="text/javascript">
+	window.addEventListener("storage", function(event){
+		var str = "被修改的key为：" + event.key;
+		var str = str + "<br>被修改之前的值：" + event.oldValue;
+		var str = str + "<br>被修改之后的值：" + event.newValue;
+		var str = str + "<br>修改Storage的页面：" + event.url;
+		var str = str + "<br>被修改的Storage为：" + event.storageArea;
+		document.querySelector("#show").innerHTML = str;
+	}, false);
+	</script>
+</head>
+<body>
+<input type="text" id="val"/><button onclick="localStorage['a'] = document.querySelector('#val').value;">dd</button>
+<div id="show"></div>
+</body>
+</html>

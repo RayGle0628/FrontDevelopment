@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> backface-visibility </title>
+	<style type="text/css">
+		div{
+			width: 120px;
+			height: 60px;
+			background-color: #bbb;
+			border: 2px solid black;
+			transform-origin: right center;
+		}
+		.a {
+			transform: rotateY(30deg);
+		}
+		.b {
+			transform: rotateY(130deg);
+		}
+	</style>
+</head>
+<body>
+<div class="a" style="backface-visibility:hidden">文字</div><br>
+<div class="a">文字</div>
+<div class="b" style="backface-visibility:hidden">文字</div><br>
+<div class="b">文字</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> 通过属性进行校验 </title>
+</head>
+<body>
+<form action="add" method="post">
+	图书名：<input name="name" type="text" required/><p>
+	图书ISBN：<input name="isbn" type="text"
+		required pattern="\d{3}-\d-\d{3}-\d{5}"/><p>
+	图书价格：<input name="price" type="number" 
+		min="20" max="150" step="5"/><p>
+	<input type="submit" value="提交"/>
+</form>
+</body>
+</html>

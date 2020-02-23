@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> :type </title>
+	<style type="text/css">
+		p {
+			padding: 5px;
+		}
+		/* 匹配p选择器，且是与它同类型、同级的兄弟元素中的第一个的CSS样式 */
+		p:first-of-type{
+			border: 1px solid black;
+		}
+		/* 匹配p选择器，且是与它同类型、同级的兄弟元素中的最后一个的CSS样式 */
+		p:last-of-type {
+			background-color: #aaa;
+		}
+		/* 匹配p选择器，且是与它同类型、同级的兄弟元素中的第2个的CSS样式 */
+		p:nth-of-type(2){
+			color: #888;
+		}
+		/* 匹配p选择器，且是与它同类型、同级的兄弟元素中的倒数第2个的CSS样式 */
+		p:nth-last-of-type(2){
+			font-weight: bold; 
+		}
+	</style>
+</head>
+<body>
+<div>www.crazyit.org</div>
+<p>www.fkjava.org</p>
+<p>www.fkit.org</p>
+<p>疯狂Java联盟</p>
+<p>疯狂软件教育中心</p>
+<hr/>
+<div>
+	<div id="java">疯狂Java讲义</div>
+	<div id="javaee">轻量级Java EE企业应用实战</div>
+	<p id="ajax">疯狂Ajax讲义</p>
+	<p id="xml">疯狂XML讲义</p>
+	<p id="ejb">经典Java EE企业应用实战</p>
+	<p id="android">疯狂Android讲义</p>
+	<div id="swift">疯狂Swift讲义</div>
+</div>
+</body>
+</html>

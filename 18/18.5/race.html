@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> race方法 </title>
+</head>
+<body>
+选择文件：<input type="file" id="target" name="target" multiple/><p>
+<button onclick="show();">读取</button><p>
+<div id="result"></div>
+<script type="text/javascript">
+function readFile(file){
+	var p = new Promise(function(resolve, reject){
+		var fr = new FileReader();
+		// 如果文件内容不是文本文件
+		if (/text\/\w+/.test(file.type))
+		{
+			fr.readAsText(file, "gbk");
+			console.log(file);
+			fr.onload = event => {
+				// 调用resolve函数让Promise进入fulfilled状态
+				resolve(fr.result);
+			}
+		}
+		else
+		{
+			// 调用reject函数让Promise进入rejected状态
+			reject("文件内容不符合，本例只接受文本文件！");
+		}
+	});
+	return p;
+}
+function readAll(){
+	// 定义一个空数组
+	var all = [];
+	// 获取用户选择的所有文件
+	var files = document.querySelector("#target").files;
+	// 遍历用户选择的每个文件，为每个文件创建一个Promise
+	// 并将所有Promise添加数组中
+	for (var i = 0; i < files.length; i++)
+	{
+		all.push(readFile(files[i]));
+	}
+	return all;
+}
+function show()
+{
+	// 调用race()方法创建Promise
+	// 当race方法中任意一个Promise成功时就会执行resolve回调
+	Promise.race(readAll()).then(function(data)
+	{
+		document.querySelector("#result").innerHTML += data + "<p>";
+	}).catch(function(err)
+	{
+		alert("错误：" + err);
+	});
+}
+</script>
+</body>
+</html>

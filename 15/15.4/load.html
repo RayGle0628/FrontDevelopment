@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> load和unload </title>
+	<script type="text/javascript">
+	// 为load事件绑定事件处理函数
+	window.addEventListener("load", function(event)
+	{
+		document.querySelector("#out").innerHTML = "页面加载完成";
+	});
+	// 为beforeunload事件绑定事件处理函数
+//	window.addEventListener("beforeunload", function(event)
+//	{
+//		event.returnValue = "\o/";
+//	});
+	window.addEventListener("beforeunload", function(event)
+	{
+		var confirmMsg = "\o/";
+		(event || window.event).returnValue = confirmMsg;
+		return confirmMsg; // 兼容Safari浏览器
+	});
+	</script>
+</head>
+<body>
+<div id="out"></div>
+<a href="xxx">aaaa</a>
+</body>
+</html>

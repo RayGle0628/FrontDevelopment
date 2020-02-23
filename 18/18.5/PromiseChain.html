@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> Promise链 </title>
+</head>
+<body>
+<script type="text/javascript">
+function task(){
+	var p = new Promise(function(resolve, reject){
+		// 下面代码实现本任务的异步操作
+		setTimeout(function(){
+			console.log('耗时任务完成！');
+			resolve('fkjava.org');
+		}, 1000);
+	});
+	return p;			
+}
+task().then(function(data){
+	console.info(data);
+	// 再次返回task函数的执行结果：Promise对象
+	return task();
+}).then(function(data){
+	console.info(data);
+	// 再次返回task函数的执行结果：Promise对象
+	return task();
+}).then(function(data){
+	console.info(data);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> flex-shrink控制收缩 </title>
+	<style type="text/css">
+		div#container {
+			border: 1px solid black;
+			padding: 5px;
+			width: 600px;
+			height: 140px;
+			display: flex;
+		}
+		div>div {
+			border: 1px solid #aaf;
+			padding:5px;
+			width:300px;
+			/* 设置该元素的大小包括边框 */
+			box-sizing:border-box;
+		}
+	</style>
+</head>
+<body>
+<div id="container">
+	<div style="flex-shrink:1">栏目一</div>
+	<div style="flex-shrink:2">栏目二</div>
+	<div style="flex-shrink:3">栏目三</div>
+</div>
+</body>
+</html>

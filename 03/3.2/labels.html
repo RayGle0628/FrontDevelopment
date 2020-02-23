@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> control属性 </title>
+</head>
+<body>
+<form action="pro.action" method="post" autocomplete="on">
+<label>姓名:
+<input id="name" type="text" name="name" /></label>
+<label for="name"><small>请输入姓名</small></label><p>
+<input type="button" value="第一个"
+	onclick="alert(document.getElementById('name').labels[0])"/>
+<input type="button" value="第二个"
+	onclick="alert(document.getElementById('name').labels[1])"/>
+</form>
+</body>
+</html>

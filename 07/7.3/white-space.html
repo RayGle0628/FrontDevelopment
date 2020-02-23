@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> white-space </title>
+	<style type="text/css">
+	/* 为div元素增加边框 */
+	div{
+		border:1px solid #000000;
+		height: 80px;
+		width: 240px;
+	}
+	</style>
+</head>
+<body>
+<!-- 忽略文本中的空白、换行符 -->
+white-space:normal <div style="white-space:normal">
+The root interface   in    
+the     collection     hierarchy. </div>
+<!-- 保留文本中所有空白、换行符 -->
+white-space:pre <div style="white-space:pre">
+The root interface   in    
+the     collection     hierarchy. </div>
+<!-- 忽略文本中空白，换行符，强制不换行 -->
+white-space:nowrap <div style="white-space:nowrap">
+The root interface   in    
+the     collection     hierarchy. </div>
+<!-- 保留文本中空白序列，换行符 -->
+white-space:pre-wrap <div style="white-space:pre-wrap">
+The root interface   in    
+the     collection     hierarchy. </div>
+<!-- 合并文本中空白序列，保留换行符 -->
+white-space:pre-line <div style="white-space:pre-line">
+The root interface   in    
+the     collection     hierarchy. </div>
+</body>
+</html>

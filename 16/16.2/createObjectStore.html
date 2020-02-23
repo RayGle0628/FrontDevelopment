@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="author" content="Yeeku.H.Lee(CrazyIt.org)" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> 创建Object Store </title>
+	<script type="text/javascript">
+		function openDb()
+		{
+			var dbName = "fkDb";
+			// 打开数据库连接
+			var request = indexedDB.open(dbName, 5);
+			var idb;
+			request.onsuccess = function(event)
+			{
+				idb = request.result;
+				// request的result属性代表被打开的数据库
+				alert("数据库打开成功:" + idb);
+			}
+			request.onerror = function(event)
+			{
+				alert("数据库打开失败!");
+			}
+			request.onupgradeneeded = function(event)
+			{
+				idb = request.result;
+				// 定义Object Store的名称
+				var storeName = "books";
+				// 如果要创建Object Store已存在，先删除它
+				if (idb.objectStoreNames.contains(storeName))
+				{
+					idb.deleteObjectStore(storeName);  // ①
+				}
+				// 定义创建Object Store的的选项
+				var opt = {
+					// 指定主键
+					keyPath: "isbn",
+					// 关闭主键的自增长
+					autoIncrement: false
+				};
+				// 创建Object Store
+				var store = idb.createObjectStore(storeName, opt);  // ②
+				// 对name属性创建惟一索引
+				store.createIndex("by_name", "name", {unique: true});
+				// 对content属性创建索引
+				store.createIndex("by_content", "content");
+				// 对author属性创建索引
+				store.createIndex("by_author", "author");
+				// 对price属性创建索引
+				store.createIndex("by_price", "price");
+			}
+		}
+	</script>
+</head>
+<body>
+<button onclick="openDb();">创建Object Store</button>
+</body>
+</html>

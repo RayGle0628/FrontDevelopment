@@ -1,0 +1,13 @@
+<script type="text/javascript">
+	function test(){
+		// 定义add函数，此时只提升add变量名，函数定义不会被提升
+		add = function(a , b)
+		{
+			console.log("执行add函数");
+			return a + b;
+		}
+	}
+	test();
+	// test()函数执行之后，该函数内定义的add变成全局函数
+	console.log(add(2, 5));
+</script>
